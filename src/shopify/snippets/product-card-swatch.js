@@ -1,7 +1,7 @@
 class ProductCardVariants extends HTMLElement {
   constructor() {
     super();
-    this.select = this.querySelector('select[name="id"]');
+    this.select = this.querySelector('select[name="variants"]');
     this.variantIdInput = this.querySelector('input[name="id"]');
     this.addToCartButton = this.querySelector('button[name="add"]');
     this.priceSpan = this.addToCartButton.querySelector('span');
