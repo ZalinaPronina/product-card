@@ -40,7 +40,7 @@
     </h3>
     <product-form data-section-id="{{ section.id }}" class="font-futuraPT-sans">
       {% if card_product.variants.size > 1 %}
-        <select name="id" class="font-futuraPT-sans bg-transparent border-regal-pink-dark
+        <select name="variants" class="custom-arrow font-futuraPT-sans bg-transparent border-regal-pink-dark
           border-b w-full pb-2 mb-3.5 text-base focus-visible:outline-0 bg-no-repeat">
           {% for variant in card_product.variants %}
             {% if variant.available %}
