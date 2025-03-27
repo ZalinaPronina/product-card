@@ -1,0 +1,21 @@
+{{ 'AdornCondensedSans.static.otf' | asset_url | preload_tag: as: 'font' }}
+{{ 'FuturaPT-Sans.ttf' | asset_url | preload_tag: as: 'font' }}
+
+{% style %}
+  @font-face {
+    font-family: 'Adorn Condensed Sans';
+    font-display: swap;
+    font-weight: 400;
+    src: local('Adorn Condensed Sans'),
+      url("{{ 'AdornCondensedSans.static.otf' | asset_url }}")
+        format('opentype');
+  }
+  @font-face {
+    font-family: 'Futura PT';
+    font-display: swap;
+    font-weight: 500;
+    src: local('Futura PT'),
+      url("{{ 'FuturaPT-Sans.static.ttf' | asset_url }}")
+        format('opentype');
+  }
+{% endstyle %}

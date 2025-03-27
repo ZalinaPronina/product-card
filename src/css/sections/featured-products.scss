@@ -1,0 +1,22 @@
+[data-section-type="featured-products"]{
+  @layer utilities {
+    .text-shadow {
+      text-shadow: 2px 2px 0 #242323;
+    }
+    @media (min-width: 768px) {
+      .text-shadow {
+        text-shadow: none;
+      }
+    }
+  }
+  select{
+    background-image: url("/shopify/assets/arrow.static.svg");
+    background-position: center right;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  .swiper-pagination-custom .swiper-pagination-bullet-active{
+    background: #FFD11F;
+  }
+}

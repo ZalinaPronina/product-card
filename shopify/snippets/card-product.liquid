@@ -1,0 +1,102 @@
+<product-card-variants>
+  <div
+    class="mb-5"
+  >
+    {%- if card_product.featured_media -%}
+      <a href="{{ card_product.url }}">
+        <img class="rounded-lg"
+          srcset="
+            {%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+            {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+            {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+            {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+            {%- if card_product.featured_media.width >= 940 -%}{{ card_product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
+            {%- if card_product.featured_media.width >= 1066 -%}{{ card_product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+            {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
+          "
+          src="{{ card_product.featured_media | image_url: width: 533 }}"
+          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+          alt="{{ card_product.featured_media.alt | escape }}"
+          class="motion-reduce"
+          {% unless lazy_load == false %}
+            loading="lazy"
+          {% endunless %}
+          width="{{ card_product.featured_media.width }}"
+          height="{{ card_product.featured_media.height }}"
+        >
+      </a>
+    {%- endif -%}
+  </div>
+  <div>
+    <h3
+      class="text-3xl font-normal text-center font-adorn-condensed-sans mb-5 lg:px-8"
+      itemprop="name"
+    >
+      <a aria-label="{{ card_product.title | escape }}"
+        href="{{ card_product.url }}"
+      >
+        {{ card_product.title | escape }}
+      </a>
+    </h3>
+    <product-form data-section-id="{{ section.id }}" class="font-futuraPT-sans">
+      {% if card_product.variants.size > 1 %}
+        <select name="id" class="font-futuraPT-sans bg-transparent border-regal-pink-dark
+          border-b w-full pb-2 mb-3.5 text-base focus-visible:outline-0 bg-no-repeat">
+          {% for variant in card_product.variants %}
+            {% if variant.available %}
+              <option value="{{ variant.id }}" data-price="{{ variant.price | money }}"    
+                {% if variant.featured_image %}
+                  data-image="{{ variant.featured_image.src | image_url }}"{% endif %}>
+                {{ variant.title }} 
+              </option>
+            {% else %}
+              <option value="{{ variant.id }}" data-price="{{ variant.price | money }}" data-disabled    {% if variant.featured_image %}
+                data-image="{{ variant.featured_image.src | image_url }}"
+              {% endif %}>
+              {{ variant.title }} - {{ 'common.sold_out' | t }}
+            </option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      {% endif %}
+      {%- form 'product',
+        card_product,
+        class: 'form',
+        novalidate: 'novalidate',
+        data-type: 'add-to-cart-form'
+      -%}
+        <input
+          type="hidden"
+          name="id"
+          value="{{ card_product.selected_or_first_available_variant.id }}"
+          {% if card_product.selected_or_first_available_variant.available == false %}
+            disabled
+          {% endif %}
+        >
+        <button
+          type="submit"
+          aria-label="Submit"
+          name="add"
+          class="futuraPT-sans uppercase w-full cursor-pointer bg-btn-primary-bg py-2.5 px-1.5 border-body-dark border-2 rounded-sm text-sm
+          relative shadow-none transition-all duration-200 
+          hover:-translate-x-[4px] hover:-translate-y-[4px] hover:shadow-[4px_4px_0px_#000] {% if card_product.selected_or_first_available_variant.available == false %}opacity-70 cursor-not-allowed{% endif %}"
+          {% if card_product.selected_or_first_available_variant.available == false %}
+            disabled
+          {% endif %}
+        >
+          <span>{{ card_product.selected_or_first_available_variant.price | money_with_currency }} |</span>
+          <span data-text>
+            {%- if card_product.selected_or_first_available_variant.available -%}
+              {{ 'action.add_to_cart' | t }}
+            {%- else -%}
+              {{ 'common.sold_out' | t }}
+            {%- endif -%}
+          </span>
+          <span class="sold-out-message hidden">
+            {{ 'common.sold_out' | t }}
+          </span>
+        </button>
+      {%- endform -%}
+    </product-form>
+  </div>
+</product-card-variants>

@@ -1,0 +1,34 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+ {
+  "sections": {
+    "main-index": {
+      "type": "main-index",
+      "settings": {}
+    },
+    "1d2f5b0d-e932-4cac-9a2d-4c348a75e38e": {
+      "type": "featured-products",
+      "settings": {
+        "background_image_desktop": "shopify://shop_images/13105_1.png",
+        "background_image_mobile": "shopify://shop_images/13105_1_119c6e59-46e0-45e0-ad45-89d1b1f0b24f.png",
+        "title": "our best sellers",
+        "heading_tag": "h2",
+        "collection": "best-sellers",
+        "products_to_show": 15,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "main-index",
+    "1d2f5b0d-e932-4cac-9a2d-4c348a75e38e"
+  ]
+}

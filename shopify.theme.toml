@@ -1,0 +1,3 @@
+[environments.dev]
+store = "peachy-zalina"
+path = "."
